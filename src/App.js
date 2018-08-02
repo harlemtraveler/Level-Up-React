@@ -9,24 +9,24 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <Modal>
-          <h1>Still in modal</h1>
-        </Modal>
+
         {/* The entire Toggle element below can bu used anywhere as is */}
         <Toggle>
           {({ on, toggle }) => (
             <Fragment>
               <button onClick={toggle}>Login</button>
               <Modal on={on} toggle={toggle}>
-                <h1>Still in modal</h1>
+                <h1>What up, this is Tim you mother sucka!</h1>
               </Modal>
           </Fragment>
           )}
         </Toggle>
+
       </div>
     );
   }
