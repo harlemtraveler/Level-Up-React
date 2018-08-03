@@ -18,6 +18,14 @@ class UserProvider extends Component {
     id: '123',
     name: 'Tim',
     email: 'Tim@mail.com'
+  };
+
+  logout = () => {
+    this.setState({
+      id: null,
+      name: '',
+      email: '',
+    })
   }
 
   render() {
@@ -29,7 +37,8 @@ class UserProvider extends Component {
       */
       <UserContext.Provider
         value={{
-          user: this.state
+          user: this.state,
+          logout: this.logout
         }}
       >
         {this.props.children}
@@ -57,7 +66,7 @@ class App extends Component {
           </header>
 
           <User />
-          
+
           {/* The entire Toggle element below can bu used anywhere as is */}
           <Toggle>
             {({ on, toggle }) => (
