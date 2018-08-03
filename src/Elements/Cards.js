@@ -1,9 +1,16 @@
 import styled from 'styled-components';
-import { elevation } from 'Utilities';
+// You can import the 'colors' file or a property from the 'colors' Object!
+import { elevation, transition, black } from 'Utilities';
 
 export const Card = styled.div`
   background: white;
   border-radius: 5px;
   padding: 15px;
+  color: ${black};
   ${elevation[4]};
+${'' /* Don't have to pass args to transition, but needs Object...curly braces */}
+  ${transition({})};
+  &:hover {
+    ${elevation[5]};
+  }
 `;
