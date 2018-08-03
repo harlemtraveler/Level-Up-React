@@ -2,8 +2,8 @@
 // not including './' before an import's source path.
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Portal, Icon } from 'Utilities';
-import { Card } from 'Elements';
+import { Portal } from 'Utilities';
+import { Icon, Card } from 'Elements';
 
 
 class Modal extends Component {
