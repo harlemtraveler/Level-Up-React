@@ -9,7 +9,9 @@ export const Card = styled.div`
   color: ${black};
   ${elevation[4]};
 ${'' /* Don't have to pass args to transition, but needs Object...curly braces */}
-  ${transition({})};
+  ${transition({
+    property: 'box-shadow'
+    })};
   &:hover {
     ${elevation[5]};
   }
