@@ -1,8 +1,10 @@
 import React, { Component, Fragment, createContext } from 'react';
+import { Transition } from 'react-spring';
+
 import logo from './logo.svg';
 import './App.css';
-import { Modal } from 'Elements';
-import { Portal, Toggle } from 'Utilities';
+import { Modal, Card } from 'Elements';
+import { Toggle } from 'Utilities';
 import User from './User';
 import UserProvider from './UserProvider';
 
@@ -27,7 +29,24 @@ class App extends Component {
 
           <User />
 
-          {/* The entire Toggle element below can bu used anywhere as is */}
+          <section>
+            <Toggle>
+              {({ on, toggle }) => (
+                <Fragment>
+                  <button onClick={toggle}>Show / Hide</button>
+                  <Transition
+                    from={{ opacity: 0 }}
+                    enter={{ opacity: 1 }}
+                    leave={{ opacity: 0 }}
+                  >
+                    {on && Header}
+                  </Transition>
+                </Fragment>
+              )}
+            </Toggle>
+          </section>
+
+          {/* The entire Toggle element below can be used anywhere as is */}
           <Toggle>
             {({ on, toggle }) => (
               <Fragment>
@@ -44,5 +63,11 @@ class App extends Component {
     );
   }
 }
+
+const Header = styles => (
+  <Card style={{...styles}}>
+    <h1>Show me</h1>
+  </Card>
+);
 
 export default App;
