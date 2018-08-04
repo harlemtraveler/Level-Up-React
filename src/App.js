@@ -7,6 +7,7 @@ import { Modal, Card } from 'Elements';
 import { Toggle } from 'Utilities';
 import User from './User';
 import UserProvider from './UserProvider';
+import Drag from './Drag';
 
 
 /*
@@ -27,26 +28,8 @@ class App extends Component {
             <h1 className="App-title">Welcome to React</h1>
           </header>
 
-          <User />
+          <Drag />
 
-          <section>
-            <Toggle>
-              {({ on, toggle }) => (
-                <Fragment>
-                  <button onClick={toggle}>Show / Hide</button>
-                  <Transition
-                    from={{ opacity: 0, bg: '#82d8d8', height: '0px' }}
-                    enter={{ opacity: 1, bg: '#524763', height: '200px' }}
-                    leave={{ opacity: 0, bg: '#82d8d8', height: '0px' }}
-                  >
-                    {on && Header}
-                  </Transition>
-                </Fragment>
-              )}
-            </Toggle>
-          </section>
-
-          {/* The entire Toggle element below can be used anywhere as is */}
           <Toggle>
             {({ on, toggle }) => (
               <Fragment>
