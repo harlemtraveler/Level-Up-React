@@ -19,6 +19,11 @@ class Modal extends Component {
           // native is used to solve performance issues. It's also required
           // for interpolate to work.
           native
+          // config controls the tension and friction. Lesson used config.gentle
+          config={{
+            tension: 280,
+            friction: 60
+          }}
           from={{ opacity: 0, bgOpacity: 0, y: '-50px' }}
           enter={{ opacity: 1, bgOpacity: 0.5, y: '0px' }}
           leave={{ opacity: 0, bgOpacity: 0, y: '50px' }}
