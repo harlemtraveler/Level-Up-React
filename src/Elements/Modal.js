@@ -17,7 +17,7 @@ class Modal extends Component {
       <Portal>
         <Transition
           // native is used to solve performance issues. It's also required
-          // for interpolate to work.
+          // for 'interpolate' to work.
           native
           // config controls the tension and friction. Lesson used config.gentle
           config={{
