@@ -23,6 +23,15 @@ const CardContainer = styled(animated.div)`
 
 class Drag extends Component {
 
+  onUp = xDelta => () => {
+    console.log(xDelta);
+    if (xDelta < -300) {
+      alert('Remove Card');
+    } else if (xDelta > 300) {
+      alert('Accept Card');
+    }
+  }
+
   render() {
     return (
       // Gesture tag won't work until the input of dep. coordinates.
@@ -57,6 +66,8 @@ class Drag extends Component {
                     })
                 }}>
                   <DragCard
+                    onMouseUp={this.onUp(xDelta)}
+                    onTouchEnd={this.onUp(xDelta)}
                     style={{
                       opacity: x.interpolate({
                         range: [-300, -100],
