@@ -13,7 +13,7 @@ const DragCard = AnimCard.extend`
   positon: absolute;
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled(animated.div)`
   position: relative;
   background: #ccc;
   max-width: 320px;
@@ -32,48 +32,59 @@ class Drag extends Component {
         {({ down, xDelta }) => (
 
           // Sping takes a couple of values and interpolates them.
-          <Spring
-            // 'native' enables 'interpolate' to work!!!
-            // And sheds the CPU workload!!!
-            native
-            to={{
-              x: down ? xDelta : 0
-            }}
-            /*
+            <Spring
+              // 'native' enables 'interpolate' to work!!!
+              // And sheds the CPU workload!!!
+              native
+              to={{
+                x: down ? xDelta : 0
+              }}
+              /*
               'immediate', a Boolean, contains things needed to be tied
               1-to-1 with motion. We'll use it to check if the mouse is
               pressed down and the value being changed is 'x'.
-            */
-            immediate={ name => down && name == 'x'}
-          >
+              */
+              immediate={ name => down && name == 'x'}
+            >
 
-          {/* This gives access to 'x' and if True, provides Card 'x' value */}
-          {({ x }) => (
-            <CardContainer>
-              <DragCard
-                style={{
-                  // 'interpolate' turns passed values into Objects.
-                  transform: interpolate(
-                    [
-                      x,
-                      x.interpolate({
-                        range: [-300, 300],
-                        output: [-45, 45],
+              {/* This gives access to 'x' and if True, provides Card 'x' value */}
+              {({ x }) => (
+                <CardContainer style={{
+                    background: x.interpolate({
+                      range: [-300, 300],
+                      output: ['#FF1c68', '#14D790'],
+                      extrapolate: 'clamp'
+                    })
+                }}>
+                  <DragCard
+                    style={{
+                      opacity: x.interpolate({
+                        range: [-300, -100],
+                        output: [0, 1],
                         extrapolate: 'clamp'
-                      })
-                    ],
-                    (x, rotate) => `translateX(${x}px) rotate(${rotate}deg)`
-                  )
-                }}
-              >
-                <h1>
-                  {down}, {xDelta}
-                </h1>
-              </DragCard>
-            </CardContainer>
-          )}
+                      }),
+                      // 'interpolate' turns passed values into Objects.
+                      transform: interpolate(
+                        [
+                          x,
+                          x.interpolate({
+                            range: [-300, 300],
+                            output: [-45, 45],
+                            extrapolate: 'clamp'
+                          })
+                        ],
+                        (x, rotate) => `translateX(${x}px) rotate(${rotate}deg)`
+                      )
+                    }}
+                  >
+                    <h1>
+                      Drag Me!
+                    </h1>
+                  </DragCard>
+                </CardContainer>
+              )}
 
-          </Spring>
+            </Spring>
 
         )}
       </Gesture>
